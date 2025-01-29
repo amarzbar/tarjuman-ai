@@ -3,7 +3,7 @@ import { Box, Text, Container } from "@mantine/core";
 
 export default function Login({ onLogin }: { onLogin: () => void }) {
     return (
-        <Container size="sm">
+        <Container size="sm" className="">
             <Box
                 style={{
                     display: 'flex',
