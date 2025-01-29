@@ -1,15 +1,27 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Tarjum
 
-Currently, two official plugins are available:
+Tarjum is the front end for an Arabic and English audio to text converter, currently built in React and to be expanded using the Google Cloud Platform. This project aims to provide a seamless experience for converting audio files into text using modern web technologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **React**: A JavaScript library for building user interfaces.
+- **Google Cloud Platform**: Integration with GCP services for audio processing and text conversion.
+- **Vite**: Fast and modern build tool that provides an excellent development experience.
+- **HMR**: Hot Module Replacement for instant feedback during development.
+- **ESLint**: Linting tool to ensure code quality and consistency.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Available Plugins
+
+Currently, two official plugins are available for integrating React with Vite:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md): Uses [Babel](https://babeljs.io/) for Fast Refresh.
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc): Uses [SWC](https://swc.rs/) for Fast Refresh.
+
+## Expanding the ESLint Configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
 - Configure the top-level `parserOptions` property like this:
 
@@ -25,8 +37,8 @@ export default tseslint.config({
 })
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Replace `tseslint.configs.recommended` with `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`.
+- Optionally add `...tseslint.configs.stylisticTypeChecked`.
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
 ```js
@@ -48,3 +60,13 @@ export default tseslint.config({
   },
 })
 ```
+
+## Getting Started
+
+1. Clone the repository.
+2. Install dependencies using `npm install` or `yarn install`.
+3. Start the development server with `npm run dev` or `yarn dev`.
+
+Enjoy developing your audio to text converter with React, Vite, and Google Cloud Platform!
+
+
