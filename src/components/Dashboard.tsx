@@ -1,13 +1,10 @@
 import { AppShell, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import FileUploader from "./FileInput";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 const Dashboard = () => {
     const [opened, { toggle }] = useDisclosure();
-    const [fileUploaded, setFileUploaded] = useState(true);
+    const [fileUploaded, setFileUploaded] = useState(false);
     return (
       <AppShell
         header={{ height: 60 }}
