@@ -2,9 +2,56 @@ import { AppShell, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import FileUploader from "./FileInput";
 import { useState } from "react";
+import axios from "axios";
 const Dashboard = () => {
-    const [opened, { toggle }] = useDisclosure();
-    const [fileUploaded, setFileUploaded] = useState(false);
+  const [opened, { toggle }] = useDisclosure();
+  const [file, setFile] = useState(null);
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [transcription, setTranscription] = useState(null);
+  const [isTranscribing, setIsTranscribing] = useState(false);
+
+  const handleFileUpload = async (event : any) => {
+    const file = event.target.files[0];
+    console.log(file);
+    if (file) {
+      try {
+        // Upload file to backend
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await axios.post('/api/upload', formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        setFileUploaded(true);
+        setIsTranscribing(true);
+        setFile(file);
+
+        // Now poll for the transcription
+        pollForTranscription(response.data.fileName);
+
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      }
+    }
+  };
+
+  const pollForTranscription = (fileName : any) => {
+    // Poll the server every 5 seconds for transcription status
+    const interval = setInterval(async () => {
+      try {
+        const response = await axios.get(`/api/transcription/${fileName}`);
+        if (response.status === 200) {
+          setTranscription(response.data.transcription);
+          setIsTranscribing(false);
+          clearInterval(interval);
+        }
+      } catch (error) {
+        console.error("Error fetching transcription:", error);
+      }
+    }, 5000); // Poll every 5 seconds
+  };
     return (
       <AppShell
         header={{ height: 60 }}
@@ -37,7 +84,7 @@ const Dashboard = () => {
                 Should have an onhover effect that shows a retract button. 
             */}
         <div className="flex flex-col gap-11 my-20">
-          <FileUploader />
+          <FileUploader uploadHandler={handleFileUpload} />
         </div>
         </AppShell.Navbar>
   

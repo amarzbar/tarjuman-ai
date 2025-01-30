@@ -4,16 +4,14 @@ import { useDropzone } from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
-export default function FileUploader() {
+interface FileUploaderProps {
+    uploadHandler: (event: any) => Promise<void>;
+}
+
+export default function FileUploader({ uploadHandler }: FileUploaderProps) {
     const [file, setFile] = useState<File | null>(null);
     const [isDragActive, setIsDragActive] = useState(false);
 
-    const handleUpload = () => {
-        if (file) {
-            // Handle file upload logic here
-            console.log('Uploading file:', file);
-        }
-    };
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         if (acceptedFiles.length > 0) {
@@ -61,7 +59,7 @@ export default function FileUploader() {
         </div>
 
         <Group mt="lg" className='flex float-right'>
-        <Button onClick={handleUpload} disabled={!file}>
+        <Button onClick={() => {uploadHandler}} disabled={!file}>
             Upload
         </Button>
     </Group>
