@@ -93,8 +93,8 @@ const Dashboard = () => {
 
         {/*  TODO: Output UI */
         // Skeleton if API data has not returned.
-        
-        fileUploaded ? <></> : <div className="skeleton-loading">
+        {
+        !fileUploaded  ? <></> : <div className="skeleton-loading">
           <div className="h-12 w-135" />
           <Skeleton height={8} width="100%" radius="xl" />
           <Skeleton height={8} mt={6} width="100%" radius="xl" />
@@ -133,6 +133,7 @@ const Dashboard = () => {
 
           <Skeleton height={8} mt={6} width="35%" radius="xl" />
         </div>
+        }
         }
 
         </AppShell.Main>
